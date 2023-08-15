@@ -14,15 +14,16 @@ document.querySelector('body').style.backgroundColor = '#FFDAB9';
 const validationInput = document.querySelector('#validation-input');
 validationInput.addEventListener('blur', onValidationInputBlur);
 
-function onValidationInputBlur(event){
-    const inputDataLength = validationInput.dataset.length;
-   const inputValueLength = event.currentTarget.value.length;
-console.log(inputDataLength);
-console.log(inputValueLength);
-if( inputDataLength == inputValueLength){
-    validationInput.classList.add('valid' );
-} else {
+function onValidationInputBlur(event) {
+  const inputDataLength = Number(validationInput.dataset.length);
+  const inputValueLength = Number(event.currentTarget.value.length);
+  console.log(inputDataLength);
+  console.log(inputValueLength);
+  if (inputDataLength === inputValueLength) {
+    validationInput.classList.add('valid');
+    validationInput.classList.remove('invalid');
+  } else {
     validationInput.classList.remove('valid');
-  validationInput.classList.add('invalid' );
-}
+    validationInput.classList.add('invalid');
+  }
 }
