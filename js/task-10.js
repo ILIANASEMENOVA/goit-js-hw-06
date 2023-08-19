@@ -26,16 +26,32 @@ function getRandomHexColor() {
 // Створи функцію destroyBoxes(), яка очищає вміст div#boxes, у такий спосіб видаляючи всі створені елементи.
 
 const refs = {
-  controls: document.querySelector('#controls'),
+  numberOfBoxesInput: document.querySelector('#controls input[type="number"]'),
   btnCreate: document.querySelector('button[data-create]'),
   btnDestroy: document.querySelector('button[data-destroy]'),
   boxes: document.querySelector('#boxes'),
 };
 
 refs.btnCreate.addEventListener('click', onBtnCreateClick);
-refs.btnDestroy.addEventListener('click', onbtnDestroyClick);
+refs.btnDestroy.addEventListener('click', onBtnDestroyClick);
 
-function btnCreate() {}
+function onBtnCreateClick() {
+  const quantity = Number(refs.numberOfBoxesInput.value);
+  refs.boxes.innerHTML = createBoxes(quantity);
+}
 
-function btnDestroy() {}
-function createBoxes(amount) {}
+function onBtnDestroyClick() {
+  refs.boxes.innerHTML = '';
+}
+
+function createBoxes(amount) {
+  let markup = ``;
+  let size = 30;
+
+  for (let i = 1; i <= amount; i += 1) {
+    markup += `<div style="margin: 0 auto; width: ${size}px; height: ${size}px;background-color: ${getRandomHexColor()}" > </div>`;
+    size += 10;
+  }
+
+  return markup;
+}
